@@ -257,3 +257,32 @@ If you're using remote docker host, you can connect with `ssh -X <FQDN/IP>`.
 
 </TabItem>
 </Tabs>
+
+
+# Pull Request OpenBB
+
+## The OpenBBTerminal
+
+<details>
+<summary> Pull Request for the OpenBBTerminal</summary>
+
+### Description
+
+Two bash scripts were added to make it easier to run OpenBBTerminal from Linux command line:
+
+`docker-install`
+Streamline the building and container creation pulling the proper docker-compose files.
+It also creates one single container, and make it persistent, instead of creating multiple containers every time the Terminal is started from the command line
+
+`docker-run`
+Attach the existing terminal to the current CLI.
+
+Documentation also changed with instructions on how to use the scripts.
+
+### How has this been tested?
+
+Tested on my local machine. Scripts worked fine. 
+Note to the need of changing permissions of both the scripts and the folders created when the containers are being built (`.openbbterminal/` an `OpenBBTerminal`)
+
+```
+Note: This is a common issue i experience (and have seen around). The container image do not set the proper permissions for these folders, and the error `PermissionError: [Errno 13] Permission denied: '/home/python/OpenBBUserData/styles'` always happen the first time the container is built
